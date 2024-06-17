@@ -1,0 +1,15 @@
+craete database burgerhut;
+
+use burgerhut;
+
+create table users(userid INT primary key auto_increment,Names varchar(255),mails varchar(255),pswd varchar(255),online int(1));
+
+create table admins(adminid INT primary key,admincode varchar(255),pswd varchar(255));
+
+INSERT INTO admins (adminid,admincode,pswd) VALUES(1,'admin',123456);
+
+create table foods(foodid INT primary key auto_increment,name varchar(255),img varchar(255),price int(11),decrp Text);
+
+create table orders(orderid INT primary key auto_increment,userid INT,foodid INT,qty INT);
+
+create table feedbacks(msgid INT primary key auto_increment,Name varchar(255),mails varchar(255),msgs text);

@@ -143,6 +143,7 @@
             const quantity = input.value;
             const totalPriceCell = row.querySelector('.total-price');
             totalPriceCell.textContent = (unitPrice * quantity).toFixed();
+
             updateCartTotal();
         }
 

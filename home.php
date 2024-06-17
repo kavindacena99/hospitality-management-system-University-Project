@@ -2,6 +2,24 @@
 
 <?php
     session_start();
+
+    if(!isset($_SESSION['user_id'])){
+        header("Location: index.php");
+    }
+
+    $i = 0;
+
+    if(isset($_POST['feedback'])){
+        if($i==0){
+            $i++;
+            $name = mysqli_real_escape_string($connection,$_POST['name']);
+            $mail = mysqli_real_escape_string($connection,$_POST['mail']);
+            $msg = mysqli_real_escape_string($connection,$_POST['message']);
+
+            $sql5 = "INSERT INTO feedbacks(Name,mails,msgs) VALUES('{$name}','{$mail}','{$msg}')";
+            $result5 = mysqli_query($connection,$sql5);
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -146,7 +164,8 @@
                         while($data = $result_set->fetch_array(MYSQLI_ASSOC)){
                             if($i<2){
                                 echo   "<div class='item'>" .
-                                "<img src=images/" . $data['img'] . ".jpg>" .
+                                "<img src=images/" . $data['img'] . ">" .
+                                //"<img src=images/" . $data['img'] . ".jpg>" .
                                 "<h3>" . $data['name'] . "</h3>" .
                                 "<p>" . $data['decrp'] . "</p>" . 
                                 "<p>Price: " . $data['price'] . "</p>" .
@@ -171,7 +190,7 @@
                     if($result_set = $connection->query($sql3)){
                         while($data = $result_set->fetch_array(MYSQLI_ASSOC)){
                             echo   "<div class='menu-item'>" .
-                                "<img src=images/" . $data['img'] . ".jpg>" .
+                                "<img src=images/" . $data['img'] . ">" .
                                 "<h3>" . $data['name'] . "</h3>" .
                                 "<p>" . $data['decrp'] . "</p>" . 
                                 "<p>Price: " . $data['price'] . "</p>" .
@@ -187,17 +206,17 @@
     <section id="contact">
         <div class="container">
             <h2>Contact Us</h2>
-            <form action="submit_form.php" method="post">
+            <form action="home.php" method="post">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
                 
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="mail" required>
                 
                 <label for="message">Message:</label>
                 <textarea id="message" name="message" required></textarea>
                 
-                <button type="submit" class="btn">Send Message</button>
+                <button type="submit" class="btn" name="feedback">Send Message</button>
             </form>
         </div>
     </section>

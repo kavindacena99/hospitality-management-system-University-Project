@@ -1,4 +1,5 @@
 <?php require_once 'connection/connection.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,12 +82,15 @@
                             while($row1 = mysqli_fetch_assoc($result11)){
                                 $fname = $row1['Names'];
                             }
+
                             echo "<a href='myprofile.php'>" . $fname . "</a>";
                             echo "<a href='mycart.php'>Cart</a>";
                             echo "<a href='logout.php'>Log Out</a>";
+                            
                         }else{
                             echo "<a href='index.php'>Log In</a>";
                         }
+                        echo "<a href='adminlogin.php'>Admin</a>";
                     }
                 ?>
             </div>

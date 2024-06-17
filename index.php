@@ -12,17 +12,19 @@
         $pswd = mysqli_real_escape_string($connection,$_POST['pswd']);
 
         $sql2 = "SELECT * FROM users WHERE mails='{$mail}' AND pswd='{$pswd}' ";
-        $result = mysqli_query($connection,$sql2);
+        $result2 = mysqli_query($connection,$sql2);
 
-        if(mysqli_num_rows($result) == 1){
-            $row = mysqli_fetch_assoc($result);
+        if(mysqli_num_rows($result2) == 1){
+            $row = mysqli_fetch_assoc($result2);
             $_SESSION['user_id'] = $row['userid'];
             $_SESSION['username'] = $row['Names'];
 
+            $sql = "UPDATE users SET online=1 WHERE userid={$_SESSION['user_id']}";
+            $result = mysqli_query($connection,$sql);
+
             header("Location: home.php");
         }else{
-            // Create error handling
-            echo "Invalid PSWD or MAIL";
+            echo "<p>Invalid Password and Email</p>";
         }
     }
 ?>
@@ -105,7 +107,7 @@
     </style>
 </head>
 <body>
-    <?php require_once 'nav.php'; ?>
+<?php require_once 'nav.php'; ?>
 
     <section id="login">
         <div class="container">
@@ -117,6 +119,8 @@
                     
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="pswd" required>
+
+                    <p><a href="">Forgot Password</a></p>
                     
                     <button type="submit" class="btn" name="login">Login</button>
                 </form>

@@ -8,7 +8,7 @@
         $cpswd = mysqli_real_escape_string($connection,$_POST['cpswd']);
 
         if($cpswd == $pswd){
-            $sql1 = "INSERT INTO users (Names,mails,pswd) VALUES('{$name}','{$mail}','{$pswd}')";
+            $sql1 = "INSERT INTO users (Names,mails,pswd,online) VALUES('{$name}','{$mail}','{$pswd}',0)";
             $result1 = mysqli_query($connection,$sql1);
 
             if(isset($result1)){
