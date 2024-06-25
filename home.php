@@ -6,20 +6,6 @@
     if(!isset($_SESSION['user_id'])){
         header("Location: index.php");
     }
-
-    $i = 0;
-
-    if(isset($_POST['feedback'])){
-        if($i==0){
-            $i++;
-            $name = mysqli_real_escape_string($connection,$_POST['name']);
-            $mail = mysqli_real_escape_string($connection,$_POST['mail']);
-            $msg = mysqli_real_escape_string($connection,$_POST['message']);
-
-            $sql5 = "INSERT INTO feedbacks(Name,mails,msgs) VALUES('{$name}','{$mail}','{$msg}')";
-            $result5 = mysqli_query($connection,$sql5);
-        }
-    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -206,7 +192,7 @@
     <section id="contact">
         <div class="container">
             <h2>Contact Us</h2>
-            <form action="home.php" method="post">
+            <form action="feedback.php" method="post">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
                 

@@ -17,7 +17,7 @@
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-        echo $_FILES["fileToUpload"]["tmp_name"];
+        //echo $_FILES["fileToUpload"]["tmp_name"];
         $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
         if($check !== false) {
             $uploadOk = 1;
@@ -43,7 +43,8 @@
 
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
-            echo "Sorry, your file was not uploaded.<br>";
+            $j = 0;
+            //echo "Sorry, your file was not uploaded.<br>";
         // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
