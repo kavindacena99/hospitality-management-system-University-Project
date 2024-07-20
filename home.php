@@ -188,24 +188,8 @@
             </div>
         </div>
     </section>
-
-    <section id="contact">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <form action="feedback.php" method="post">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="mail" required>
-                
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" required></textarea>
-                
-                <button type="submit" class="btn" name="feedback">Send Message</button>
-            </form>
-        </div>
-    </section>
+    
+    <?php require_once 'feedback.php' ?>
 
     <?php require_once 'footer.php'; ?>
 </body>

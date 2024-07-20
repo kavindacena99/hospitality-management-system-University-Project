@@ -45,12 +45,10 @@
         if ($uploadOk == 0) {
             $j = 0;
             //echo "Sorry, your file was not uploaded.<br>";
-        // if everything is ok, try to upload file
+            // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                 $imagename = htmlspecialchars( basename( $_FILES["fileToUpload"]["name"]));
-
-                
 
                 $sql5 = "INSERT INTO foods (name,img,price,decrp) VALUES('{$foodname}','{$imagename}',{$price},'{$decrip}')";
                 $result5 = mysqli_query($connection,$sql5);
@@ -273,37 +271,13 @@
 
                     if($result_set1 = $connection->query($sql1)){
                         while($datarows = $result_set1->fetch_array(MYSQLI_ASSOC)){
-                            echo "<h3>" . $datarows['Name'] . "</h3>" . " " . "<h4>" . $datarows['mails'] . "</h4>" . 
-                                "<p>" . $datarows['msgs'] . "</p>";
+                            echo "<h3 style='color:red'>" . $datarows['Name'] . "</h3>" . " " . "<h4>" . $datarows['mails'] . "</h4>" . 
+                                "<p>" . $datarows['msgs'] . "</p><br>";
                         }
                     }
                 ?>
             <br><br>
         </div>
     </section>
-
-    <script>
-        document.addEventListener('DOMContentLoaded',function(){
-            updateCartTotal();
-        });
-
-        function updateTotal(input){
-            const row = input.closest('tr');
-            const unitPrice = parseInt(row.querySelector('.unit-price').textContent);
-            const quantity = input.value;
-            const totalPriceCell = row.querySelector('.total-price');
-            totalPriceCell.textContent = (unitPrice * quantity).toFixed();
-            updateCartTotal();
-        }
-
-        function updateCartTotal() {
-            const totalCells = document.querySelectorAll('.total-price');
-            let total = 0;
-            totalCells.forEach(cell => {
-                total += parseInt(cell.textContent);
-            });
-            document.getElementById('cart-total').textContent = total.toFixed();
-        }
-    </script>
 </body>
 </html>
